@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>port3</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+</head>
+
+<body>
+    <header id="header">
+        <h1>port<span>planet</span></h1>
+        <nav>
+            <ul>
+                <li>about</li>
+                <li>work</li>
+                <li>team</li>
+                <li>contact</li>
+            </ul>
+        </nav>
+    </header>
+    <!-- header -->
+
+    <main>
+        <section id="section1">
+            <div class="text">
+                <div class="t1">devloper</div>
+                <div class="t2">the portfolio <span>pro</span></div>
+                <div class="t3"><img src="/assets/img/face.png" alt="나"></div>
+                <div class="t4">hyunmin</div>
+            </div>
+            <div class="scroll">
+                <p>This is a developer portfolio filled with passion and effort.
+                </p>
+                <span><em>scroll</em>down</span>
+            </div>
+            <canvas id="bgCanvas"></canvas>
+            <canvas id="terCanvas"></canvas>
+        </section>
+        <!-- section1 -->
+
+        <section id="section2">
+            <div>
+                <span class="mv">{ Mission & Vision }</span>
+                <div class="art">
+                    unitin art and<br>
+                    technology to redefine<br>
+                    digital creativity
+                </div>
+                <div class="itd">
+                    <p>
+                        안녕하세요.<br>
+                        저는 전기공사 분야에서 6년간의 경력을 쌓아온 김현민입니다.<br>
+                        전기공사 일을 통해 다양한 기술을 습득하고 문제 해결 능력을 키웠습니다.<br>
+                        수많은 프로젝트를 수행하며 현장에서의 <br>
+                        실전 경험을 쌓았고, 이를 통해 <br> 전문적인 기술과 노하우를 축적할 수 있었습니다.
+                    </p>
+
+                    <p>
+                        저는 새로운 도전을 찾아 프론트엔드 개발자의 길을 걷기로 결심했습니다.<br>
+                        기술의 발전과 함께 웹 개발에 대한 관심이 커지면서,<br>
+                        저의 미래를 위한 더 나은 기회를 모색하게 되었습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="section3"></section>
+        <section id="section4"></section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script>
+
+        new SplitType('.t1', { types: 'chars' });
+        new SplitType('.t2', { types: 'chars' });
+        new SplitType('.t4', { types: 'chars' });
+
+        gsap.from(".t1 .char", {
+            duration: 1,
+            opacity: 0,
+            y: -50,
+            ease: "back.out(1.7)",
+            stagger: 0.05,
+            delay: 0.5
+        });
+
+        gsap.from(".t2 .char", {
+            duration: 1,
+            opacity: 0,
+            y: -50,
+            ease: "back.out(1.7)",
+            stagger: 0.05,
+            delay: 1
+        });
+
+        gsap.from(".t4 .char", {
+            duration: 1,
+            opacity: 0,
+            y: -50,
+            ease: "back.out(1.7)",
+            stagger: 0.05,
+            delay: 1.7
+        });
+
+        gsap.from(".t3 img", {
+            duration: 2,
+            opacity: 0,
+            y: -1000,
+            scale: 0.1,
+            ease: "power4.out",
+            delay: 3.3,
+            onComplete: () => {
+                gsap.to("#header", {
+                    duration: 0.25,
+                    y: 0,
+                    ease: "bounce.In"
+                });
+            }
+        });
+
+        gsap.from(".scroll p", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            delay: 2.5
+        });
+
+        gsap.from(".scroll span", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            delay: 3,
+            repeat: -1,
+            yoyo: true
+        });
+
+    </script>
+
+    <script>
+        (function () {
+            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+                    window.setTimeout(callback, 1000 / 60);
+                };
+            window.requestAnimationFrame = requestAnimationFrame;
+        })();
+
+        // Terrain stuff.
+        var section1 = document.getElementById("section1");
+        if (section1) {
+            var terrain = document.getElementById("terCanvas"),
+                background = document.getElementById("bgCanvas"),
+                terCtx = terrain.getContext("2d"),
+                bgCtx = background.getContext("2d"),
+                width = window.innerWidth,
+                height = section1.offsetHeight;
+            (height < 300) ? height = 300 : height;
+
+            terrain.width = background.width = width;
+            terrain.height = background.height = height;
+        }
+
+        // Some random points
+        var points = [],
+            displacement = 140,
+            power = Math.pow(2, Math.ceil(Math.log(width) / (Math.log(2))));
+
+        // set the start height and end height for the terrain
+        points[0] = (height - (Math.random() * height / 2)) - displacement;
+        points[power] = (height - (Math.random() * height / 2)) - displacement;
+
+        // create the rest of the points
+        for (var i = 1; i < power; i *= 2) {
+            for (var j = (power / i) / 2; j < power; j += power / i) {
+                points[j] = ((points[j - (power / i) / 2] + points[j + (power / i) / 2]) / 2) + Math.floor(Math.random() * -displacement + displacement);
+            }
+            displacement *= 0.6;
+        }
+
+        // draw the terrain
+        terCtx.beginPath();
+
+        for (var i = 0; i <= width; i++) {
+            if (i === 0) {
+                terCtx.moveTo(0, points[0]);
+            } else if (points[i] !== undefined) {
+                terCtx.lineTo(i, points[i]);
+            }
+        }
+
+        terCtx.lineTo(width, terrain.height);
+        terCtx.lineTo(0, terrain.height);
+        terCtx.lineTo(0, points[0]);
+        terCtx.fill();
+
+
+        // Second canvas used for the stars
+        bgCtx.fillStyle = '#05004c';
+        bgCtx.fillRect(0, 0, width, height);
+
+        // stars
+        function Star(options) {
+            this.size = Math.random() * 2;
+            this.speed = Math.random() * .1;
+            this.x = options.x;
+            this.y = options.y;
+        }
+
+        Star.prototype.reset = function () {
+            this.size = Math.random() * 2;
+            this.speed = Math.random() * .1;
+            this.x = width;
+            this.y = Math.random() * height;
+        }
+
+        Star.prototype.update = function () {
+            this.x -= this.speed;
+            if (this.x < 0) {
+                this.reset();
+            } else {
+                bgCtx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        function ShootingStar() {
+            this.reset();
+        }
+
+        ShootingStar.prototype.reset = function () {
+            this.x = Math.random() * width;
+            this.y = 0;
+            this.len = (Math.random() * 80) + 10;
+            this.speed = (Math.random() * 10) + 6;
+            this.size = (Math.random() * 2) + 0.2;
+            // this is used so the shooting stars arent constant
+            this.waitTime = new Date().getTime() + (Math.random() * 3000) + 500;
+            this.active = false;
+        }
+
+        ShootingStar.prototype.update = function () {
+            if (this.active) {
+                this.x -= this.speed;
+                this.y += this.speed;
+                if (this.x < 0 || this.y >= height) {
+                    this.reset();
+                } else {
+                    bgCtx.lineWidth = this.size;
+                    bgCtx.beginPath();
+                    bgCtx.moveTo(this.x, this.y);
+                    bgCtx.lineTo(this.x + this.len, this.y - this.len);
+                    bgCtx.stroke();
+                }
+            } else {
+                if (this.waitTime < new Date().getTime()) {
+                    this.active = true;
+                }
+            }
+        }
+
+        var entities = [];
+
+        // init the stars
+        for (var i = 0; i < height; i++) {
+            entities.push(new Star({ x: Math.random() * width, y: Math.random() * height }));
+        }
+
+        // Add 2 shooting stars that just cycle.
+        entities.push(new ShootingStar());
+        entities.push(new ShootingStar());
+
+        //animate background
+        function animate() {
+            bgCtx.fillStyle = '#05004c';
+            bgCtx.fillRect(0, 0, width, height);
+            bgCtx.fillStyle = '#ffffff';
+            bgCtx.strokeStyle = '#ffffff';
+
+            var entLen = entities.length;
+
+            while (entLen--) {
+                entities[entLen].update();
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+
+    </script>
+</body>
+
+</html>
