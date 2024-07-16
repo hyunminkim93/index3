@@ -192,3 +192,11 @@ canvas {
 #section2 .itd p {
     margin-bottom: 5%;
 }
+
+/* section2 */
+
+#section3 {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+}
