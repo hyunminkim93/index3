@@ -148,6 +148,65 @@ function animate() {
 }
 animate();
 
+// 커서
+const cursor = document.createElement('div');
+cursor.classList.add('percent');
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', e => {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+});
+
+const skills = document.querySelectorAll('.skill');
+skills.forEach(skill => {
+    const elements = skill.querySelectorAll('.desc, .title3');
+    elements.forEach(element => {
+        element.addEventListener('mouseover', e => {
+            const style = getComputedStyle(element);
+            if (style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0') {
+                const percent = skill.getAttribute('data-percent');
+                cursor.innerText = percent;
+                cursor.style.transform = 'scale(1.2)';
+                cursor.style.opacity = '1';
+                document.body.style.cursor = 'none'; // 기본 커서 숨기기
+            }
+        });
+
+        element.addEventListener('mouseout', e => {
+            const style = getComputedStyle(element);
+            if (style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0') {
+                cursor.innerText = '';
+                cursor.style.transform = 'scale(1)';
+                cursor.style.opacity = '0';
+                document.body.style.cursor = 'auto'; // 기본 커서 표시
+            }
+        });
+    });
+});
+
+const section3 = document.getElementById('section3');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // section3이 보일 때는 cursor가 마우스 움직임에 반응하도록 함
+            document.addEventListener('mousemove', handleMouseMove);
+        } else {
+            // section3이 보이지 않을 때 cursor 숨기기
+            cursor.style.opacity = '0';
+            document.removeEventListener('mousemove', handleMouseMove);
+        }
+    });
+});
+
+function handleMouseMove(e) {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+}
+
+observer.observe(section3);
+
+
 
 
 
