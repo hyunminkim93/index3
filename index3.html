@@ -15,8 +15,8 @@
         <nav>
             <ul>
                 <li>about</li>
+                <li>skill</li>
                 <li>work</li>
-                <li>team</li>
                 <li>contact</li>
             </ul>
         </nav>
@@ -117,8 +117,24 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <script src="/js/main.js"></script>
+
+    <!-- <script>
+        const lenis = new Lenis();
+
+        lenis.on('scroll', (e) => {
+            console.log(e);
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script> -->
     <script>
 
         // section1
@@ -219,6 +235,36 @@
                 trigger: "#section2",
                 start: "top center"
             }
+        });
+
+        // section3의 ScrollTrigger 설정
+        gsap.utils.toArray("#section3").forEach((panel, i) => {
+            ScrollTrigger.create({
+                trigger: panel,
+                start: "top top",
+                end: "bottom top", // section3가 끝나는 지점을 명확히 설정
+                pin: true,
+                scrub: 0.5,
+                pinSpacing: true  // pinSpacing을 true로 설정
+            });
+        });
+
+        // section3 스킬 하나씩 나오기
+        gsap.utils.toArray('.skill').forEach(skill => {
+            gsap.fromTo(skill,
+                { opacity: 0, y: -50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scrollTrigger: {
+                        trigger: skill,
+                        start: 'top top',
+                        end: '-=1000',
+                        onEnter: () => gsap.to(skill, { opacity: 1, y: 0, duration: 1 }),
+                        onLeaveBack: () => gsap.to(skill, { opacity: 0, y: -50, duration: 1 })
+                    }
+                }
+            );
         });
     </script>
 </body>

@@ -1,3 +1,5 @@
+
+// section1 bg
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
@@ -145,4 +147,19 @@ function animate() {
     requestAnimationFrame(animate);
 }
 animate();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
