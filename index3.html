@@ -117,7 +117,98 @@
         <!-- section4 -->
 
         <section id="section5">
-
+            <div class="image-container">
+                <div class="image-box left">
+                    <img src="/assets/img/wolf.jpg" alt="">
+                    <div class="overlay">
+                        <h2>PICKSTOM PHP SITE.</h2>
+                        <div class="buttons">
+                            <button><a href="http://rlagusals235.dothome.co.kr/" target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/FirstProject"
+                                    target="_blank">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box right">
+                    <img src="assets/img/tiger.jpg" alt="">
+                    <div class="overlay">
+                        <h2> CHICKEN REACT SITE.</h2>
+                        <div class="buttons">
+                            <button><a href="https://chicken-site.vercel.app/" target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/chickenSite"
+                                    target="_blank">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box left">
+                    <img src="/assets/img/aa.png" alt="">
+                    <div class="overlay">
+                        <h2>FOOD REACT SITE.</h2>
+                        <div class="buttons">
+                            <button><a href="https://find-food-amber.vercel.app/" target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/find-food"
+                                    target="_blank">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box right">
+                    <img src="assets/img/bb.png" alt="">
+                    <div class="overlay">
+                        <h2> MUSIC REACT SITE.</h2>
+                        <div class="buttons">
+                            <button><a href="https://youtubemusic3.vercel.app/" target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/youtubemusic3"
+                                    target="_blank">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box left">
+                    <img src="/assets/img/cc.png" alt="">
+                    <div class="overlay">
+                        <h2>MOVIE VUE SITE.</h2>
+                        <div class="buttons">
+                            <button><a href="https://movie-info-vue.web.app/" target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/vue-movie"
+                                    target="_blank">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box right">
+                    <img src="assets/img/dd.png" alt="">
+                    <div class="overlay">
+                        <h2> JAVASCRIPT ORGANIZE.</h2>
+                        <div class="buttons">
+                            <button><a href="https://hyunminkim93.github.io/class2024/javascript/index.html"
+                                    target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/class2024/tree/main/javascript"
+                                    target="_blank">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box left">
+                    <img src="/assets/img/ee.png" alt="">
+                    <div class="overlay">
+                        <h2>MYSQL ORGANIZE.</h2>
+                        <div class="buttons">
+                            <button><a href="https://hyunminkim93.github.io/class2024/mysql/index.html"
+                                    target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/class2024/tree/main/mysql"
+                                    target="_blank">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box right">
+                    <img src="assets/img/ff.png" alt="">
+                    <div class="overlay">
+                        <h2> QUIZ GAME.</h2>
+                        <div class="buttons">
+                            <button><a href="https://hyunminkim93.github.io/class2024/quiz/index.html">WEB</a></button>
+                            <button><a
+                                    href="https://github.com/hyunminkim93/class2024/tree/main/quiz">DETAIL</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -271,12 +362,29 @@
                 scrollTrigger: {
                     trigger: '#section4',
                     start: "bottom bottom",
-                    end: "bottom top+=100%",
+                    end: "bottom top",
                     scrub: true,
                     toggleActions: "play none none reverse"
                 }
             }
         );
+
+        // section5 
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to('.image-container', {
+            x: () => -(document.querySelector('.image-container').scrollWidth - window.innerWidth),
+            ease: 'power1.inOut',
+            scrollTrigger: {
+                trigger: '#section5',
+                pin: true,
+                scrub: 1,
+                end: () => "+=" + (document.querySelector('.image-container').scrollWidth - window.innerWidth),
+                onLeave: () => {
+                    ScrollTrigger.refresh();
+                }
+            }
+        });
     </script>
 </body>
 
