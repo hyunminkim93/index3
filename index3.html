@@ -256,7 +256,6 @@
                         start: "top top",
                         end: "bottom+=220% top",
                         pin: true,
-                        markers: true,
                         onEnter: () => skill.classList.add('visible'),
                         toggleActions: "play none none reverse"
                     }
@@ -264,6 +263,20 @@
             );
         });
 
+        // section5로 넘어가는 ScrollTrigger 
+        gsap.fromTo('#section5',
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1, y: 0,
+                scrollTrigger: {
+                    trigger: '#section4',
+                    start: "bottom bottom",
+                    end: "bottom top+=100%",
+                    scrub: true,
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
     </script>
 </body>
 

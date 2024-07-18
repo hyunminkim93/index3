@@ -214,18 +214,18 @@ canvas {
 #section4 {
     width: 100%;
     height: 100vh;
-    background-color: #000;
+    background: transparent;
 }
 
 .skill {
-    margin: 25px 2px;
+    /* margin: 25px 2px; */
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
     padding-left: 80px;
     padding-right: 80px;
-    margin-top: 46px;
+    /* margin-top: 46px; */
     gap: 12px;
 }
 
