@@ -26,7 +26,7 @@
     <main>
         <section id="section1">
             <div class="text">
-                <div class="t1">devloper</div>
+                <div class="t1">developer</div>
                 <div class="t2">the portfolio <span>pro</span></div>
                 <div class="t3"><img src="/assets/img/face.png" alt="나"></div>
                 <div class="t4">hyunmin</div>
@@ -74,6 +74,10 @@
         <!-- section2 -->
 
         <section id="section3">
+        </section>
+        <!-- section3 -->
+
+        <section id="section4">
             <div class="skill skill-left" data-percent="73%">
                 <h2 class="title3">JAVASCRIPT</h2>
                 <p class="desc">자바스크립트를 활용한 동적 웹 애플리케이션 개발 경험이 풍부합니다.복잡한 문제를 해결하고 최적화된 코드를 작성하여 사용자 친화적인 인터페이스를
@@ -110,9 +114,11 @@
                     데이터베이스 연동을 통해 안정적이고 사용자 친화적인 시스템을 구축하는 데 기여했습니다.</p>
             </div>
         </section>
-        <!-- section3 -->
+        <!-- section4 -->
 
-        <section id="section4"></section>
+        <section id="section5">
+
+        </section>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
@@ -121,7 +127,7 @@
     <script src="https://unpkg.com/split-type"></script>
     <script src="/js/main.js"></script>
 
-    <!-- <script>
+    <script>
         const lenis = new Lenis();
 
         lenis.on('scroll', (e) => {
@@ -134,7 +140,7 @@
         }
 
         requestAnimationFrame(raf);
-    </script> -->
+    </script>
     <script>
 
         // section1
@@ -237,35 +243,27 @@
             }
         });
 
-        // section3의 ScrollTrigger 설정
-        gsap.utils.toArray("#section3").forEach((panel, i) => {
-            ScrollTrigger.create({
-                trigger: panel,
-                start: "top top",
-                end: "bottom top",
-                pin: true,
-                scrub: 0.5,
-                pinSpacing: true
-            });
-        });
+        // section3
+        gsap.registerPlugin(ScrollTrigger);
 
-        // section3 스킬 하나씩 나오기
-        gsap.utils.toArray('.skill').forEach(skill => {
+        gsap.utils.toArray('#section4 .skill').forEach(skill => {
             gsap.fromTo(skill,
-                { opacity: 0, y: -50 },
+                { opacity: 0, y: 50 },
                 {
-                    opacity: 1,
-                    y: 0,
+                    opacity: 1, y: 0,
                     scrollTrigger: {
-                        trigger: skill,
-                        start: 'top top',
-                        end: '-=1000',
-                        onEnter: () => gsap.to(skill, { opacity: 1, y: 0, duration: 1 }),
-                        onLeaveBack: () => gsap.to(skill, { opacity: 0, y: -50, duration: 1 })
+                        trigger: '#section3',
+                        start: "top top",
+                        end: "bottom+=220% top",
+                        pin: true,
+                        markers: true,
+                        onEnter: () => skill.classList.add('visible'),
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
         });
+
     </script>
 </body>
 

@@ -198,24 +198,35 @@ canvas {
 #section3 {
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 100vh;
     align-items: center;
     background-image: url(/assets/img/bg2.jpg);
-    background-color: #000;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     position: relative;
+
+}
+
+/* section3 */
+
+#section4 {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
 }
 
 .skill {
+    margin: 25px 2px;
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
     padding-left: 80px;
     padding-right: 80px;
+    margin-top: 46px;
     gap: 12px;
-    top: 50px;
 }
 
 .skill-left {
@@ -239,6 +250,7 @@ canvas {
     font-family: "IropkeBatangM";
     text-align: unset;
     width: 390px;
+
 }
 
 .percent {
@@ -261,14 +273,15 @@ canvas {
 
 }
 
-canvas {
-    display: block;
-}
+/* section4 */
 
-/* section3 */
 
-#section4 {
+#section5 {
     width: 100%;
     height: 100vh;
     background-color: #000;
+    background-image: url(/assets/img/bg2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
