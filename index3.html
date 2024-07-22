@@ -119,7 +119,7 @@
         <section id="section5">
             <div class="image-container">
                 <div class="image-box left">
-                    <img src="/assets/img/wolf.jpg" alt="">
+                    <img src="/assets/img/hh.jpg" alt="">
                     <div class="overlay">
                         <h2>PICKSTOM PHP SITE.</h2>
                         <div class="buttons">
@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div class="image-box right">
-                    <img src="assets/img/tiger.jpg" alt="">
+                    <img src="assets/img/gg.jpg" alt="">
                     <div class="overlay">
                         <h2> CHICKEN REACT SITE.</h2>
                         <div class="buttons">
@@ -202,12 +202,54 @@
                     <div class="overlay">
                         <h2> QUIZ GAME.</h2>
                         <div class="buttons">
-                            <button><a href="https://hyunminkim93.github.io/class2024/quiz/index.html">WEB</a></button>
-                            <button><a
-                                    href="https://github.com/hyunminkim93/class2024/tree/main/quiz">DETAIL</a></button>
+                            <button><a href="https://hyunminkim93.github.io/class2024/quiz/index.html"
+                                    target="_blank">WEB</a></button>
+                            <button><a href="https://github.com/hyunminkim93/class2024/tree/main/quiz"
+                                    target="_blank">DETAIL</a></button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="section6">
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="assets/img/face.png" alt="멤버 1">
+                    <h3>click</h3>
+                </div>
+                <div class="team-member">
+                    <img src="assets/img/face.png" alt="멤버 2">
+                    <h3>click</h3>
+                </div>
+                <div class="team-member">
+                    <img src="assets/img/face.png" alt="나">
+                    <h3>hyunminkim</h3>
+                    <div class="team-p">
+                        <p>my project team so far</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="assets/img/face.png" alt="멤버 4">
+                    <h3>click</h3>
+                </div>
+                <div class="team-member">
+                    <img src="assets/img/face.png" alt="멤버 5">
+                    <h3>click</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="section7">
+            <h1 class="tfv">Thank you for <br>viewing my <br>portfolio so far.</h1>
+            <div class="links">
+                <p class="follow">{ Follow Us }</p>
+                <a href="https://www.instagram.com/hyunminzz" target="_blank">INSTA</a>
+                <a href="https://github.com/hyunminkim93" target="_blank">GITHUB</a>
+                <a href="mailto:rlagusals234@gmail.com">EMAIL</a>
+            </div>
+            <div class="copyright">
+                &copy; 2024 PORTFOLIO
             </div>
         </section>
     </main>
@@ -337,6 +379,7 @@
         // section3
         gsap.registerPlugin(ScrollTrigger);
 
+        // 기존 스킬 요소에 대한 애니메이션
         gsap.utils.toArray('#section4 .skill').forEach(skill => {
             gsap.fromTo(skill,
                 { opacity: 0, y: 50 },
@@ -345,10 +388,56 @@
                     scrollTrigger: {
                         trigger: '#section3',
                         start: "top top",
-                        end: "bottom+=220% top",
+                        end: "bottom+=200% top",
                         pin: true,
                         onEnter: () => skill.classList.add('visible'),
                         toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('#section4 .title3').forEach(title => {
+            gsap.fromTo(title,
+                { opacity: 0, y: 100 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: title.parentElement,
+                        start: "top bottom",
+                        end: "top center",
+                        toggleActions: "play none none none",
+                        onEnterBack: () => animateDesc()
+                    }
+                }
+            );
+        });
+
+        // desc 텍스트를 글자별로 분할하고 각 글자에 애니메이션 적용
+        const descElements = gsap.utils.toArray('#section4 .desc');
+        descElements.forEach(desc => {
+            const splitText = new SplitType(desc, { types: 'chars', position: 'absolute' }); // position을 absolute로 설정하여 각 글자가 독립적으로 움직일 수 있도록 함
+
+            // GSAP을 사용하여 각 글자에 "바람에 살랑이는" 효과 적용
+            gsap.fromTo(splitText.chars,
+                { opacity: 0, y: 30, rotation: -30 }, // 시작 상태: 아래에서 시작하며 투명하고 약간 회전된 상태
+                {
+                    opacity: 1, y: 0, rotation: 0, // 최종 상태: 위로 이동하며 불투명하고 회전이 원상복구됨
+                    delay: index => index * 0.01, // 각 글자가 0.03초 지연으로 순차적으로 나타남
+                    duration: 0.8, // 애니메이션 지속 시간
+                    ease: "power2.out", // 부드러운 이징 효과
+                    stagger: {
+                        each: 0.02,
+                        from: "center",
+                        amount: 0.2
+                    }, // 중앙에서 시작해 양쪽으로 퍼져나가는 스태거 효과
+                    scrollTrigger: {
+                        trigger: desc,
+                        start: "top bottom",
+                        end: "top center",
+                        toggleActions: "play none none none"
                     }
                 }
             );
@@ -358,7 +447,7 @@
         gsap.fromTo('#section5',
             { opacity: 0, y: 50 },
             {
-                opacity: 1, y: 0,
+                opacity: 1, y: 100,
                 scrollTrigger: {
                     trigger: '#section4',
                     start: "bottom bottom",
@@ -369,7 +458,7 @@
             }
         );
 
-        // section5 
+        // section5
         gsap.registerPlugin(ScrollTrigger);
 
         gsap.to('.image-container', {
@@ -384,6 +473,54 @@
                     ScrollTrigger.refresh();
                 }
             }
+        });
+
+        // section6
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener('load', function () {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#section6",
+                    start: "top center",
+                    toggleActions: "play none none none"
+                }
+            })
+                .to('.team-member:nth-child(3)', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+                .to('.team-member:nth-child(3) h3', { opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.5')
+                .to('.team-member:nth-child(3) .team-p', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5')
+                .to('.team-member:nth-child(1)', { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.2 })
+                .to('.team-member:nth-child(1) h3', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5')
+                .to('.team-member:nth-child(2)', { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.2 })
+                .to('.team-member:nth-child(2) h3', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5')
+                .to('.team-member:nth-child(4)', { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.2 })
+                .to('.team-member:nth-child(4) h3', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5')
+                .to('.team-member:nth-child(5)', { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.2 })
+                .to('.team-member:nth-child(5) h3', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5');
+        });
+
+        // section7
+        document.addEventListener("DOMContentLoaded", () => {
+            // section6의 텍스트를 SplitType으로 쪼갭니다.
+            const targets = gsap.utils.toArray(".tfv");
+            let splitClient = new SplitType(targets, { type: "lines, words, chars" });
+            let chars = splitClient.chars;
+
+            // 초기 설정
+            gsap.set(chars, { y: 200, opacity: 0 });
+
+            // 애니메이션 타임라인 설정 및 ScrollTrigger 설정
+            gsap.to(chars, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.03,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: "#section7",
+                    start: "top 10%", // 섹션의 10%가 보일 때 트리거
+                    once: true // 애니메이션이 한 번만 재생되도록 설정
+                }
+            });
         });
     </script>
 </body>

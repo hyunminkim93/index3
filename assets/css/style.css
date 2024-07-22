@@ -219,14 +219,14 @@ canvas {
 }
 
 .skill {
-    /* margin: 25px 2px; */
+    margin: 25px 2px;
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
     padding-left: 80px;
     padding-right: 80px;
-    /* margin-top: 46px; */
+    margin-top: 46px;
     gap: 12px;
 }
 
@@ -239,19 +239,19 @@ canvas {
 }
 
 .title3 {
-    font-size: 6vw;
+    font-size: 100px;
     font-family: "Thunder";
     color: #FBF0C2;
     margin: 0
 }
 
 .desc {
-    font-size: 0.8vw;
+    font-size: 14px;
     color: #FBF0C2;
     font-family: "IropkeBatangM";
     text-align: unset;
     width: 390px;
-
+    overflow: hidden;
 }
 
 .percent {
@@ -350,3 +350,105 @@ canvas {
 }
 
 /* section5 */
+
+#section6 {
+    width: 100%;
+    height: 110vh;
+    padding: 20vw 0;
+    background-color: #000;
+}
+
+.team-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 20px;
+}
+
+.team-member {
+    text-align: center;
+    transition: transform 0.3s;
+    opacity: 0;
+    transform: translateY(100px);
+    margin: 0 10px;
+}
+
+.team-member:hover {
+    transform: scale(1.1);
+}
+
+.team-member img {
+    width: 300px;
+    height: 300px;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+
+.team-member img:hover {
+    filter: grayscale(0%);
+}
+
+.team-member h3 {
+    margin-top: 10px;
+    font-size: 3vw;
+    font-family: "Thunder";
+    color: #741BD4;
+    text-transform: uppercase;
+}
+
+.team-p {
+    font-size: 3vw;
+    font-family: "Thunder";
+    color: #741BD4;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* section6 */
+
+#section7 {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tfv {
+    font-size: 12vw;
+    color: #FAEDBF;
+    font-family: "Thunder";
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 0.9;
+    overflow-y: hidden;
+}
+
+.links a {
+    color: #741BD4;
+    text-decoration: none;
+    font-family: "Thunder";
+    font-size: 3em;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.follow {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #FAEDBF;
+}
+
+.copyright {
+    margin-top: 50px;
+    font-size: 0.8em;
+    color: gray;
+}
+
+/* section7 */
